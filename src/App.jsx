@@ -1,4 +1,5 @@
-import {Card} from './Card';
+import "./App.scss";
+import {Card} from './Components/Card';
 import { useState } from "react"
 
 // Aqui você irá escrever as suas funções de Validação, para verificar se o Formulário foi preenchido corretamente
@@ -7,12 +8,16 @@ function validationTexto(texto){
   if(texto.length < 3){
     return false;
   }
+  else if(texto.length > 150){
+    return false;
+  }
   return true;
 }
 
 function validationColor(cor) {
+  cor = cor.trim();
   const patternColorHex = /^[#]{1}[0-9abcdef]{6}$/;
-  if(cor.length != 7){
+  if(cor.length !== 7){
     return false;
   }
   else{
@@ -32,8 +37,8 @@ function App() {
   function adicionarAnotacao(event){
     event.preventDefault();
     const novaAnotacao = {
-      cor: corAnotacao,
-      texto: textoAnotacao
+      cor: corAnotacao.trim(),
+      texto: textoAnotacao.trim()
     }
     if(validationColor(corAnotacao) && validationTexto(textoAnotacao)){
       setListaAnotacao([...listaAnotacao, novaAnotacao]);
@@ -50,21 +55,23 @@ function App() {
 
   return (
     <div className="App">
-     <h1>Adionar uma nova anotação</h1>
-     <form onSubmit={event => adicionarAnotacao(event)}>
+     <h1>Adicionar uma nova anotação</h1>
+     <form onSubmit={event => adicionarAnotacao(event)} className={erro ? 'error': null}>
         <label htmlFor="anotacao"></label>
         <input id="anotacao" type="text" placeholder="Digite a sua anotação." value={textoAnotacao} onChange={event => setTextoAnotacao(event.target.value)}/>
         <label htmlFor="cor"></label>
-        <input id="cor" type="text" value={corAnotacao} onChange={event => setCorAnotacao(event.target.value)}/>
+        <input id="cor" type="text" placeholder="Digite a cor com formato hexadecimal (#ffffff) " value={corAnotacao} onChange={event => setCorAnotacao(event.target.value)}/>
         <button type='submit'>Salvar</button>
         {
           erro ? <span>Por favor, verifique os dados inseridos no formulário</span> : null
         }
      </form>
      <h2>Anotações: </h2>
+     <div>
       {
         listaAnotacao.map((anotacaoItem,index)=>(<Card anotacao={anotacaoItem} key={index} />))
       }
+     </div>
     </div>
   )
 }

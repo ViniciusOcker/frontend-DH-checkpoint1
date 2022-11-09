@@ -1,0 +1,81 @@
+.App{
+    display: flex;
+    flex-direction: column;
+    h1{
+        text-align: center;
+        font-size: 30px;
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+        @media (prefers-color-scheme: dark) {
+            color: rgb(255, 255, 255);
+        }
+    }
+    form{
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        align-self: center;
+        padding: 20px;
+        border-radius: 10px;
+        @media (prefers-color-scheme: dark) {
+            border-color: rgb(255, 255, 255);
+        }
+        input{
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 1px solid black;
+            font-size: 20px;
+            @media (prefers-color-scheme: dark) {
+                color:rgb(255, 255, 255);
+                background-color: rgb(0,0,0);
+                border-bottom-color: rgb(255, 255, 255);
+                &::placeholder {
+                    color: rgb(204, 204, 204);
+                }
+            }
+        }
+        button{
+            padding: 15px;
+            background-color: green;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            @media (prefers-color-scheme: dark) {
+                color: white;
+            }
+        }
+        span{
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        &.error{
+            border-color: red;
+            input{
+                border: 1px solid red;
+            }
+            button{
+                background-color: rgb(42, 90, 42);
+                color:rgb(119, 119, 119);
+            }
+        }
+    }
+    h2{
+        text-align: center;
+        font-size: 25px;
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+        @media (prefers-color-scheme: dark) {
+            color: white;
+        }
+    }
+    div{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

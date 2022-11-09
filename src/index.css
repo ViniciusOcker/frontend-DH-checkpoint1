@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@media (prefers-color-scheme: dark) {
+  body{
+    background-color: black;
+  }
+}
